@@ -23,7 +23,7 @@ describe('User', () => {
     );
   });
 
-  it('Should have a property of favoriteRecipes with a default value', () => {
+  it('Should have a property of favoriteRecipes with a default value of an empty array', () => {
     expect(user1.favoriteRecipes).to.eql([]);
   });
 
@@ -32,8 +32,11 @@ describe('User', () => {
     expect(user1.favoriteRecipes.includes(recipeData[0])).to.eql(true);
   });
 
-  it('Should be able to remove recipes from favoriteRecipes', () =>{
-    user1.removeFromFavorites(recipeData);
+  it.only('Should be able to remove recipes from favoriteRecipes', () =>{
+    user1.addToFavorites(recipeData[0])
+    user1.addToFavorites(recipeData[1])
+    user1.removeFromFavorites(recipeData[0]);
+    user1.removeFromFavorites(recipeData[1]);
     expect(user1.favoriteRecipes).to.eql([]);
   });
 
