@@ -57,8 +57,8 @@ describe('User', () => {
     expect(user1.findFavorites('Maple Dijon Apple Cider Grilled Pork Chops')).to.eql([recipeData[1]]);
   });
 
-  it.only('Should be able to check ingredients in User\'s pantry for a given recipe', () => {
-    expect(user1.checkPantry(recipeIngredients)).to.eql('You have the ingredients!');
+  it('Should be able to check ingredients in User\'s pantry for a given recipe', () => {
+    expect(user1.checkPantry(recipeData[0])).to.eql('You have the ingredients!');
   });
 
   it('Should inform User if they lack required ingredients for a given recipe', () => {
