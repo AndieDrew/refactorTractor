@@ -24,17 +24,19 @@ describe('Recipe', () => {
       expect(recipe.ingredients).to.equal(recipeData[0].ingredients);
     })
 
-    it.only('Should hold its own instruction data', () => {
+    it('Should hold its own instruction data', () => {
       expect(recipe.instructions).to.equal(recipeData[0].instructions);
     })
 
     it('Should hold tags for its own recipe', () => {
       expect(recipe.tags).to.deep.equal(["antipasti", "starter", "snack", "appetizer", "antipasto", "hor d'oeuvre"]);
+      expect(recipe1.tags).to.deep.equal(["lunch", "main course", "main dish", "dinner"]);
     })
 
     it('Should be able to calculate the cost of its ingredients', () => {
-      console.log(ingredientsData);
-      expect(recipe.calculateCost()).to.equal(4166);
+      expect(recipe.calculateCost()).to.equal(59.21);
+      expect(recipe1.calculateCost()).to.equal(63.64);
+
     });
 
 
