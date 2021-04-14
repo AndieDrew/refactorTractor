@@ -3,12 +3,13 @@ import './css/styles.scss';
 
 import recipeData from './data/recipes';
 import ingredientsData from './data/ingredients';
-import users from './data/users';
+// import users from './data/users';
 
 import Pantry from './pantry';
 import Recipe from './recipe';
 import User from './user';
 import Cookbook from './cookbook';
+import { fetchData } from './APICalls';
 
 let favButton = document.querySelector('.view-favorites');
 let homeButton = document.querySelector('.home')
@@ -23,14 +24,23 @@ favButton.addEventListener('click', viewFavorites);
 cardArea.addEventListener('click', cardButtonConditionals);
 
 function onStartup() {
-  let userId = (Math.floor(Math.random() * 49) + 1)
-  let newUser = users.find(user => {
-    return user.id === Number(userId);
-  });
-  user = new User(userId, newUser.name, newUser.pantry)
-  pantry = new Pantry(newUser.pantry)
-  populateCards(cookbook.recipes);
-  greetUser();
+  fetchCurrentData()
+}
+
+function fetchCurrentData() {
+  fetchData()
+  .then(allData => {
+    let userId = (Math.floor(Math.random() * allData.userData.length) + 1)
+    let newUser = allData.userData.find(user => {
+      return user.id === Number(userId);
+    });
+    if (!user) {
+      user = new User(userId, newUser.name, newUser.pantry)
+      pantry = new Pantry(newUser.pantry)
+    }
+    greetUser(user);
+    populateCards(cookbook.recipes);
+  })
 }
 
 function viewFavorites() {
