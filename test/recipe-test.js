@@ -13,8 +13,6 @@ describe('Recipe', () => {
     recipe1 = new Recipe(recipeData[1], ingredientsData);
   });
 
-  describe('Recipe Data', () => {
-
     it('Should hold recipe name', () => {
       expect(recipe.name).to.equal("Loaded Chocolate Chip Pudding Cookie Cups");
       expect(recipe1.name).to.equal("Maple Dijon Apple Cider Grilled Pork Chops");
@@ -39,6 +37,4 @@ describe('Recipe', () => {
 
     });
 
-
-  })
 });
