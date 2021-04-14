@@ -9,16 +9,11 @@ class Recipe {
   }
 
   calculateCost() {
-    let costCounter = 0;
-    this.ingredients.forEach(ingredient => {
-      this.ingredientsData.find(specificIngredient => {
-        if (specificIngredient.id === ingredient.id) {
-          costCounter += (Number(specificIngredient.estimatedCostInCents) *
-          Number(ingredient.quantity.amount))
-        }
-      })
-    });
-    return costCounter;
+    let recipeIngredients = this.ingredientsData.filter(ingredient =>
+      this.ingredients.find(ing => ingredient.id === ing.id));
+    return recipeIngredients.reduce((acc, next) => {
+      return acc += next.estimatedCostInCents
+    }, 0) / 100;
   }
 
 }
