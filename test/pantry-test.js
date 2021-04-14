@@ -8,7 +8,7 @@ import recipeData from '../src/data/recipes.js'
 import users from '../src/data/test-users.js'
 
 
-let user, pantry;
+let user, pantry, missingIngredients;
 
 describe('Pantry', () => {
   beforeEach(() => {
@@ -26,11 +26,12 @@ describe('Pantry', () => {
   });
 
   it('Should inform User if they lack required ingredients for a given recipe', () => {
-    expect(pantry.checkPantry(recipeData[1])).to.eql(missingIngredientsWithPrice);
+    missingIngredients = recipeData[1].ingredients.map(ingredient => ingredient.name)
+    expect(pantry.checkPantry(recipeData[1])).to.eql(missingIngredients);
   });
 
   it('Should remove ingredients from pantry if User is able to use them to cook a recipe', () => {
-    pantry.useIngredients()
+    pantry.useIngredients(recipeData[0]).to.deep.eql([])
   });
 
 });
