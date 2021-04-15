@@ -71,6 +71,7 @@ function inputSearch() {
 }
 
 function viewFavorites() {
+  document.querySelector('#search-input').value = '';
   if (cardArea.classList.contains('all')) {
     cardArea.classList.remove('all')
   }
