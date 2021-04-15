@@ -10,21 +10,16 @@ class Pantry {
   checkPantry(recipe) {
     const missingIngredients = [];
     recipe.ingredients.forEach(recipeItem => {
-      let foundItem = this.contents.find(pantryItem => {
-        if ((pantryItem.ingredient === recipeItem.id) && (pantryItem.amount >= recipeItem.quantity.amount)) {
-          return pantryItem
-        } else if ((pantryItem.ingredient === recipeItem.id) || (pantryItem.amount < recipeItem.quantity.amount)) {
-          missingIngredients.push(recipeItem.name)
-        }
-      })
+      let foundItemIndex = this.contents.findIndex(pantryItem => pantryItem.ingredient === recipeItem.id);
+      if (foundItemIndex === -1 || recipeItem.quantity.amount > this.contents[foundItemIndex].amount) {
+        missingIngredients.push(recipeItem.name);
+      }
     });
-    console.log(missingIngredients);
-    if (missingIngredients.length) {
-      return missingIngredients;
-    } else {
+    if (!missingIngredients.length) {
       return `You have the ingredients!`
+    } else {
+      return missingIngredients;
     }
-
   }
 
 
