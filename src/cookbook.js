@@ -6,8 +6,8 @@ class Cookbook {
   findRecipe(searchText) {
     return this.recipes.filter(recipe => {
       return recipe.ingredients.find(ingredient => {
-        return (ingredient.name.includes(searchText)) ||
-        (recipe.name.includes(searchText))
+        return (ingredient.name.toLowerCase().includes(searchText)) ||
+          (recipe.name.toLowerCase().includes(searchText))
       });
     })
   }

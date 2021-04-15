@@ -9,11 +9,16 @@ import Pantry from './pantry';
 import Recipe from './recipe';
 import User from './user';
 import Cookbook from './cookbook';
-import { fetchData } from './APICalls';
+import {
+  fetchData
+} from './APICalls';
 
 let favButton = document.querySelector('.view-favorites');
 let homeButton = document.querySelector('.home')
 let cardArea = document.querySelector('.all-cards');
+let searchInput = document.querySelector("#search-input");
+
+
 let cookbook = new Cookbook(recipeData);
 let user, pantry;
 
@@ -22,6 +27,7 @@ window.onload = onStartup();
 homeButton.addEventListener('click', cardButtonConditionals);
 favButton.addEventListener('click', viewFavorites);
 cardArea.addEventListener('click', cardButtonConditionals);
+searchInput.addEventListener('keyup', inputSearch);
 
 function onStartup() {
   fetchCurrentData()
@@ -29,21 +35,44 @@ function onStartup() {
 
 function fetchCurrentData() {
   fetchData()
-  .then(allData => {
-    let userId = (Math.floor(Math.random() * allData.userData.length) + 1)
-    let newUser = allData.userData.find(user => {
-      return user.id === Number(userId);
-    });
-    if (!user) {
-      user = new User(userId, newUser.name, newUser.pantry)
-      pantry = new Pantry(newUser.pantry)
-    }
-    greetUser(user);
-    populateCards(cookbook.recipes);
+    .then(allData => {
+      let userId = (Math.floor(Math.random() * allData.userData.length) + 1)
+      let newUser = allData.userData.find(user => {
+        return user.id === Number(userId);
+      });
+      if (!user) {
+        user = new User(userId, newUser.name, newUser.pantry)
+        pantry = new Pantry(newUser.pantry)
+      }
+      greetUser(user);
+      populateCards(cookbook.recipes);
+    })
+}
+
+function inputSearch() {
+  cardArea.innerHTML = " ";
+  cookbook.findRecipe(searchInput.value.toLowerCase()).forEach(recipe => {
+    cardArea.insertAdjacentHTML('afterbegin', `<div id='${recipe.id}'
+      class='card'>
+      <header id='${recipe.id}' class='card-header'>
+      <label for='add-button' class='hidden'>Click to add recipe</label>
+      <button id='${recipe.id}' aria-label='add-button' class='add-button card-button'>
+      <img id='${recipe.id}' class='add'
+      src='https://image.flaticon.com/icons/svg/32/32339.svg' alt='Add to
+      recipes to cook'></button>
+      <label for='favorite-button' class='hidden'>Click to favorite recipe
+      </label>
+      <button id='${recipe.id}' aria-label='favorite-button' class='favorite favorite${recipe.id} card-button'>
+      </button></header>
+      <span id='${recipe.id}' class='recipe-name'>${recipe.name}</span>
+      <img id='${recipe.id}' tabindex='0' class='card-picture'
+      src='${recipe.image}' alt='Food from recipe'>
+      </div>`)
   })
 }
 
 function viewFavorites() {
+  document.querySelector('#search-input').value = '';
   if (cardArea.classList.contains('all')) {
     cardArea.classList.remove('all')
   }
@@ -78,12 +107,12 @@ function viewFavorites() {
 function greetUser() {
   const userName = document.querySelector('.user-name');
   userName.innerHTML =
-  user.name.split(' ')[0] + ' ' + user.name.split(' ')[1][0];
+    user.name.split(' ')[0] + ' ' + user.name.split(' ')[1][0];
 }
 
 function favoriteCard(event) {
   let specificRecipe = cookbook.recipes.find(recipe => {
-    if (recipe.id  === Number(event.target.id)) {
+    if (recipe.id === Number(event.target.id)) {
       return recipe;
     }
   })
@@ -105,9 +134,9 @@ function cardButtonConditionals(event) {
   } else if (event.target.classList.contains('home')) {
     favButton.innerHTML = 'View Favorites';
     populateCards(cookbook.recipes);
+    document.querySelector('#search-input').value = '';
   }
 }
-
 
 function displayDirections(event) {
   let newRecipeInfo = cookbook.recipes.find(recipe => {
