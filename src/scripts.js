@@ -14,6 +14,9 @@ import { fetchData } from './APICalls';
 let favButton = document.querySelector('.view-favorites');
 let homeButton = document.querySelector('.home')
 let cardArea = document.querySelector('.all-cards');
+let searchInput = document.querySelector("#search-input");
+
+
 let cookbook = new Cookbook(recipeData);
 let user, pantry;
 
@@ -22,6 +25,8 @@ window.onload = onStartup();
 homeButton.addEventListener('click', cardButtonConditionals);
 favButton.addEventListener('click', viewFavorites);
 cardArea.addEventListener('click', cardButtonConditionals);
+searchInput.addEventListener('keyup', inputSearch);
+
 
 function onStartup() {
   fetchCurrentData()
