@@ -133,6 +133,7 @@ function cardButtonConditionals(event) {
   } else if (event.target.classList.contains('home')) {
     favButton.innerHTML = 'View Favorites';
     populateCards(cookbook.recipes);
+    document.querySelector('#search-input').value = '';
   }
 }
 
