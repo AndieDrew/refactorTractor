@@ -49,7 +49,6 @@ function fetchCurrentData() {
 }
 
 function inputSearch() {
-  console.log(cookbook.recipies)
     cardArea.innerHTML = " ";
     cookbook.findRecipe(searchInput.value.toLowerCase()).forEach(recipe => {
       cardArea.insertAdjacentHTML('afterbegin', `<div id='${recipe.id}'
