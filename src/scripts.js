@@ -9,7 +9,9 @@ import Pantry from './pantry';
 import Recipe from './recipe';
 import User from './user';
 import Cookbook from './cookbook';
-import { fetchData } from './APICalls';
+import {
+  fetchData
+} from './APICalls';
 
 let favButton = document.querySelector('.view-favorites');
 let homeButton = document.querySelector('.home')
@@ -27,31 +29,30 @@ favButton.addEventListener('click', viewFavorites);
 cardArea.addEventListener('click', cardButtonConditionals);
 searchInput.addEventListener('keyup', inputSearch);
 
-
 function onStartup() {
   fetchCurrentData()
 }
 
 function fetchCurrentData() {
   fetchData()
-  .then(allData => {
-    let userId = (Math.floor(Math.random() * allData.userData.length) + 1)
-    let newUser = allData.userData.find(user => {
-      return user.id === Number(userId);
-    });
-    if (!user) {
-      user = new User(userId, newUser.name, newUser.pantry)
-      pantry = new Pantry(newUser.pantry)
-    }
-    greetUser(user);
-    populateCards(cookbook.recipes);
-  })
+    .then(allData => {
+      let userId = (Math.floor(Math.random() * allData.userData.length) + 1)
+      let newUser = allData.userData.find(user => {
+        return user.id === Number(userId);
+      });
+      if (!user) {
+        user = new User(userId, newUser.name, newUser.pantry)
+        pantry = new Pantry(newUser.pantry)
+      }
+      greetUser(user);
+      populateCards(cookbook.recipes);
+    })
 }
 
 function inputSearch() {
-    cardArea.innerHTML = " ";
-    cookbook.findRecipe(searchInput.value.toLowerCase()).forEach(recipe => {
-      cardArea.insertAdjacentHTML('afterbegin', `<div id='${recipe.id}'
+  cardArea.innerHTML = " ";
+  cookbook.findRecipe(searchInput.value.toLowerCase()).forEach(recipe => {
+    cardArea.insertAdjacentHTML('afterbegin', `<div id='${recipe.id}'
       class='card'>
       <header id='${recipe.id}' class='card-header'>
       <label for='add-button' class='hidden'>Click to add recipe</label>
@@ -67,7 +68,7 @@ function inputSearch() {
       <img id='${recipe.id}' tabindex='0' class='card-picture'
       src='${recipe.image}' alt='Food from recipe'>
       </div>`)
-    })
+  })
 }
 
 function viewFavorites() {
@@ -106,12 +107,12 @@ function viewFavorites() {
 function greetUser() {
   const userName = document.querySelector('.user-name');
   userName.innerHTML =
-  user.name.split(' ')[0] + ' ' + user.name.split(' ')[1][0];
+    user.name.split(' ')[0] + ' ' + user.name.split(' ')[1][0];
 }
 
 function favoriteCard(event) {
   let specificRecipe = cookbook.recipes.find(recipe => {
-    if (recipe.id  === Number(event.target.id)) {
+    if (recipe.id === Number(event.target.id)) {
       return recipe;
     }
   })
@@ -136,7 +137,6 @@ function cardButtonConditionals(event) {
     document.querySelector('#search-input').value = '';
   }
 }
-
 
 function displayDirections(event) {
   let newRecipeInfo = cookbook.recipes.find(recipe => {
