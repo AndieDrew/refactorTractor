@@ -29,8 +29,8 @@ describe('Pantry', () => {
     expect(pantry.checkPantry(recipeData[1])).to.eql(missingIngredients);
   });
 
-  it.skip('Should remove ingredients from pantry if User is able to use them to cook a recipe', () => {
-    pantry.useIngredients(recipeData[0]).to.deep.eql([])
+  it('Should remove ingredients from pantry if User is able to use them to cook a recipe', () => {
+    expect(pantry.useIngredients(recipeData[0])).to.deep.eql([])
   });
 
 });
