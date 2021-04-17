@@ -66,7 +66,6 @@ const domUpdates = {
   },
 
   favoriteCard(event, user, cookbook) {
-    console.log(cookbook);
     let favButton = document.querySelector('.view-favorites');
     let specificRecipe = cookbook.recipes.find(recipe => {
       if (recipe.id === Number(event.target.id)) {
@@ -83,13 +82,12 @@ const domUpdates = {
     }
   },
 
-  cardButtonConditionals(event, user, cookbook) {
+  cardButtonConditionals(event, user, cookbook, ingredients) {
     let favButton = document.querySelector('.view-favorites');
     if (event.target.classList.contains('favorite')) {
-      console.log(cookbook);
       domUpdates.favoriteCard(event, user, cookbook);
     } else if (event.target.classList.contains('card-picture')) {
-      domUpdates.displayDirections(event, cookbook);
+      domUpdates.displayDirections(event, cookbook, ingredients);
     } else if (event.target.classList.contains('home')) {
       favButton.innerHTML = 'View Favorites';
       domUpdates.populateCards(cookbook.recipes, user);
@@ -97,13 +95,14 @@ const domUpdates = {
     }
   },
 
-  displayDirections(event, cookbook) {
+  displayDirections(event, cookbook, ingredients) {
+    let cardArea = document.querySelector('.all-cards');
     let newRecipeInfo = cookbook.recipes.find(recipe => {
       if (recipe.id === Number(event.target.id)) {
         return recipe;
       }
     })
-    let recipeObject = new Recipe(newRecipeInfo, ingredientsData);
+    let recipeObject = new Recipe(newRecipeInfo, ingredients);
     let cost = recipeObject.calculateCost()
     let costInDollars = (cost / 100).toFixed(2)
     cardArea.classList.add('all');
@@ -131,7 +130,6 @@ const domUpdates = {
   },
 
   getFavorites(user) {
-    console.log(user);
     if (user.favoriteRecipes.length) {
       user.favoriteRecipes.forEach(recipe => {
         document.querySelector(`.favorite${recipe.id}`).classList.add('favorite-active')
@@ -164,7 +162,6 @@ const domUpdates = {
             src='${recipe.image}' alt='click to view recipe for ${recipe.name}'>
       </div>`)
     })
-    console.log(user);
     this.getFavorites(user);
   }
 
