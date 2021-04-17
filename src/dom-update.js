@@ -1,3 +1,5 @@
+import Recipe from './recipe';
+
 const domUpdates = {
 
   inputSearch() {
@@ -22,14 +24,16 @@ const domUpdates = {
     })
   },
 
-    viewFavorites() {
+    viewFavorites(event, user, cookbook) {
+      let cardArea = document.querySelector('.all-cards');
+      let favButton = document.querySelector('.view-favorites');
       document.querySelector('#search-input').value = '';
       if (cardArea.classList.contains('all')) {
         cardArea.classList.remove('all')
       }
       if (!user.favoriteRecipes.length) {
         favButton.innerHTML = 'You have no favorites!';
-        populateCards(cookbook.recipes);
+        domUpdates.populateCards(cookbook.recipes, user);
         return
       } else {
         favButton.innerHTML = 'Refresh Favorites'
@@ -61,7 +65,9 @@ const domUpdates = {
       user.name.split(' ')[0] + ' ' + user.name.split(' ')[1][0];
   },
 
-  favoriteCard(event) {
+  favoriteCard(event, user, cookbook) {
+    console.log(cookbook);
+    let favButton = document.querySelector('.view-favorites');
     let specificRecipe = cookbook.recipes.find(recipe => {
       if (recipe.id === Number(event.target.id)) {
         return recipe;
@@ -77,19 +83,21 @@ const domUpdates = {
     }
   },
 
-  cardButtonConditionals(event) {
+  cardButtonConditionals(event, user, cookbook) {
+    let favButton = document.querySelector('.view-favorites');
     if (event.target.classList.contains('favorite')) {
-      favoriteCard(event);
+      console.log(cookbook);
+      domUpdates.favoriteCard(event, user, cookbook);
     } else if (event.target.classList.contains('card-picture')) {
-      displayDirections(event);
+      domUpdates.displayDirections(event, cookbook);
     } else if (event.target.classList.contains('home')) {
       favButton.innerHTML = 'View Favorites';
-      populateCards(cookbook.recipes);
+      domUpdates.populateCards(cookbook.recipes, user);
       document.querySelector('#search-input').value = '';
     }
   },
 
-  displayDirections(event) {
+  displayDirections(event, cookbook) {
     let newRecipeInfo = cookbook.recipes.find(recipe => {
       if (recipe.id === Number(event.target.id)) {
         return recipe;
@@ -123,6 +131,7 @@ const domUpdates = {
   },
 
   getFavorites(user) {
+    console.log(user);
     if (user.favoriteRecipes.length) {
       user.favoriteRecipes.forEach(recipe => {
         document.querySelector(`.favorite${recipe.id}`).classList.add('favorite-active')
@@ -130,7 +139,7 @@ const domUpdates = {
     } else return
   },
 
-  populateCards(recipes, person) {
+  populateCards(recipes, user) {
     let cardArea = document.querySelector('.all-cards');
     cardArea.innerHTML = '';
     if (cardArea.classList.contains('all')) {
@@ -155,7 +164,8 @@ const domUpdates = {
             src='${recipe.image}' alt='click to view recipe for ${recipe.name}'>
       </div>`)
     })
-    this.getFavorites(person);
+    console.log(user);
+    this.getFavorites(user);
   }
 
 }
