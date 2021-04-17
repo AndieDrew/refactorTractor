@@ -16,7 +16,7 @@ let cardArea = document.querySelector('.all-cards');
 let searchInput = document.querySelector("#search-input");
 
 
-let user, pantry, cookbook;
+let user, pantry, cookbook, ingredients;
 
 window.onload = onStartup();
 
@@ -27,7 +27,7 @@ favButton.addEventListener('click', () => {
   domUpdates.viewFavorites(event, user, cookbook)
 });
 
-cardArea.addEventListener('click', () => domUpdates.cardButtonConditionals(event, user, cookbook));
+cardArea.addEventListener('click', () => domUpdates.cardButtonConditionals(event, user, cookbook, ingredients));
 searchInput.addEventListener('keyup', domUpdates.inputSearch);
 
 function onStartup() {
@@ -46,6 +46,7 @@ function fetchCurrentData() {
         user = new User(allData.recipeData, userId, newUser.name, newUser.pantry)
         pantry = new Pantry(newUser.pantry)
         cookbook = new Cookbook(allData.recipeData);
+        ingredients = allData.ingredientsData
         console.log(cookbook, "post fetch");
       }
       domUpdates.greetUser(user);
