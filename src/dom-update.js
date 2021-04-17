@@ -174,7 +174,7 @@ const domUpdates = {
   cookRecipe(event, user, cookbook) {
     let cardArea = document.querySelector('.all-cards');
     let addRecipeButton = document.querySelector('.add-button');
-
+    let cookButton = document.querySelector('#view-recipes-to-cook-button');
     let specificRecipe = cookbook.recipes.find(recipe => {
       if (recipe.id === Number(event.target.id)) {
         return recipe;
@@ -183,11 +183,47 @@ const domUpdates = {
     console.log('got it!')
     if (!event.target.classList.contains('cook-active')) {
       event.target.classList.add('cook-active');
-      // favButton.innerHTML = 'View Favorites';
+      cookButton.innerHTML = 'View Recipes To Cook';
       user.addRecipeToCook(specificRecipe);
+      console.log(specificRecipe);
     } else if (event.target.classList.contains('cook-active')) {
       event.target.classList.remove('cook-active');
-      user.removeFromFavorites(specificRecipe)
+      user.removeFromRecipesToCook(specificRecipe);
+    }
+  },
+
+  viewRecipesToCook(event, user, cookbook) {
+    let cardArea = document.querySelector('.all-cards');
+    let cookButton = document.querySelector('#view-recipes-to-cook-button');
+    document.querySelector('#search-input').value = '';
+    if (cardArea.classList.contains('all')) {
+      cardArea.classList.remove('all')
+    }
+    if (!user.recipesToCook.length) {
+      cookButton.innerHTML = 'You have nothing to cook!';
+      domUpdates.populateCards(cookbook.recipes, user);
+      return
+    } else {
+      cookButton.innerHTML = 'Refresh Recipes To Cook'
+      cardArea.innerHTML = '';
+      user.recipesToCook.forEach(recipe => {
+        cardArea.insertAdjacentHTML('afterbegin', `<div id='${recipe.id}'
+        class='card'>
+        <header id='${recipe.id}' class='card-header'>
+        <label for='add-button' class='hidden'>Click to add recipe</label>
+        <button id='${recipe.id}' aria-label='add-button' class='add-button card-button'>
+        <img id='${recipe.id}' class='add'
+        src='https://image.flaticon.com/icons/svg/32/32339.svg' alt='Add to
+        recipes to cook'></button>
+        <label for='favorite-button' class='hidden'>Click to favorite recipe
+        </label>
+        <button id='${recipe.id}' aria-label='favorite-button' class='favorite card-button'>
+        </button></header>
+        <span id='${recipe.id}' class='recipe-name'>${recipe.name}</span>
+        <img id='${recipe.id}' tabindex='0' class='card-picture'
+        src='${recipe.image}' alt='Food from recipe'>
+        </div>`)
+      })
     }
   }
 
