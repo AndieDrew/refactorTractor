@@ -21,7 +21,7 @@ let user, pantry, cookbook;
 window.onload = onStartup();
 
 homeButton.addEventListener('click', domUpdates.cardButtonConditionals);
-favButton.addEventListener('click', domUpdates.viewFavorites);
+favButton.addEventListener('click', () => domUpdates.viewFavorites(event, user));
 cardArea.addEventListener('click', domUpdates.cardButtonConditionals);
 searchInput.addEventListener('keyup', domUpdates.inputSearch);
 
@@ -37,7 +37,7 @@ function fetchCurrentData() {
         return user.id === Number(userId);
       });
       if (!user) {
-        user = new User(userId, newUser.name, newUser.pantry)
+        user = new User(allData.recipeData, userId, newUser.name, newUser.pantry)
         pantry = new Pantry(newUser.pantry)
         cookbook = new Cookbook(allData.recipeData);
       }

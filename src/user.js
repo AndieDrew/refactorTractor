@@ -1,5 +1,8 @@
-class User {
-  constructor(id, name, pantry) {
+import Cookbook from './cookbook';
+
+class User extends Cookbook {
+  constructor(recipes, id, name, pantry) {
+    super(recipes);
     this.id = id;
     this.name = name;
     this.pantry = pantry;
@@ -39,6 +42,5 @@ class User {
   }
 
 }
-
 
 export default User;
