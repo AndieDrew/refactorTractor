@@ -47,7 +47,6 @@ describe('User', () => {
     expect(user1.filterFavorites('snack')).to.eql([recipeData[0]]);
     expect(user1.filterFavorites('lunch')).to.eql([recipeData[1]]);
     expect(user1.filterFavorites('main course')).to.eql([recipeData[1]]);
-
   });
 
   it('Should be able to search favoriteRecipes by name or ingredient', () => {
@@ -55,6 +54,12 @@ describe('User', () => {
     user1.addToFavorites(recipeData[1]);
     expect(user1.findFavorites('egg')).to.eql([recipeData[0]]);
     expect(user1.findFavorites('Maple Dijon Apple Cider Grilled Pork Chops')).to.eql([recipeData[1]]);
+  });
+
+  it('Should be able to add a recipe to a list of recipes to cook', () => {
+    user1.addRecipeToCook(recipeData[0]);
+    user1.addRecipeToCook(recipeData[1]);
+    expect(user1.recipesToCook).to.deep.eql([ recipeData[0], recipeData[1] ]);
   });
 
 });
