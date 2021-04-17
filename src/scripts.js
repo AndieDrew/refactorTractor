@@ -20,13 +20,19 @@ let user, pantry, cookbook;
 
 window.onload = onStartup();
 
-homeButton.addEventListener('click', domUpdates.cardButtonConditionals);
-favButton.addEventListener('click', () => domUpdates.viewFavorites(event, user));
-cardArea.addEventListener('click', domUpdates.cardButtonConditionals);
+homeButton.addEventListener('click', () => domUpdates.cardButtonConditionals(event, user, cookbook));
+
+favButton.addEventListener('click', () => {
+  console.log(cookbook, "clicked favorite");
+  domUpdates.viewFavorites(event, user, cookbook)
+});
+
+cardArea.addEventListener('click', () => domUpdates.cardButtonConditionals(event, user, cookbook));
 searchInput.addEventListener('keyup', domUpdates.inputSearch);
 
 function onStartup() {
   fetchCurrentData()
+  console.log(cookbook, "on startup");
 }
 
 function fetchCurrentData() {
@@ -40,8 +46,10 @@ function fetchCurrentData() {
         user = new User(allData.recipeData, userId, newUser.name, newUser.pantry)
         pantry = new Pantry(newUser.pantry)
         cookbook = new Cookbook(allData.recipeData);
+        console.log(cookbook, "post fetch");
       }
       domUpdates.greetUser(user);
+      console.log(user, "post fetch user");
       domUpdates.populateCards(cookbook.recipes, user);
     })
 }
