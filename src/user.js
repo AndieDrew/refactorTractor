@@ -41,6 +41,11 @@ class User extends Cookbook {
     return this.recipesToCook;
   }
 
+  removeFromRecipesToCook(recipe) {
+    const i = this.recipesToCook.indexOf(recipe);
+    this.recipesToCook.splice(i, 1)
+  }
+
 }
 
 export default User;
