@@ -66,7 +66,6 @@ const domUpdates = {
   },
 
   favoriteCard(event, user, cookbook) {
-    console.log(cookbook);
     let favButton = document.querySelector('.view-favorites');
     let specificRecipe = cookbook.recipes.find(recipe => {
       if (recipe.id === Number(event.target.id)) {
@@ -84,10 +83,8 @@ const domUpdates = {
   },
 
   cardButtonConditionals(event, user, cookbook, ingredients) {
-
     let favButton = document.querySelector('.view-favorites');
     if (event.target.classList.contains('favorite')) {
-      console.log(cookbook);
       domUpdates.favoriteCard(event, user, cookbook);
     } else if (event.target.classList.contains('card-picture')) {
       domUpdates.displayDirections(event, cookbook, ingredients);
@@ -133,7 +130,6 @@ const domUpdates = {
   },
 
   getFavorites(user) {
-    console.log(user);
     if (user.favoriteRecipes.length) {
       user.favoriteRecipes.forEach(recipe => {
         document.querySelector(`.favorite${recipe.id}`).classList.add('favorite-active')
@@ -166,7 +162,6 @@ const domUpdates = {
             src='${recipe.image}' alt='click to view recipe for ${recipe.name}'>
       </div>`)
     })
-    console.log(user);
     this.getFavorites(user);
   }
 

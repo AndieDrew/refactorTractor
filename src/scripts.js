@@ -23,7 +23,6 @@ window.onload = onStartup();
 homeButton.addEventListener('click', () => domUpdates.cardButtonConditionals(event, user, cookbook));
 
 favButton.addEventListener('click', () => {
-  console.log(cookbook, "clicked favorite");
   domUpdates.viewFavorites(event, user, cookbook)
 });
 
@@ -32,7 +31,6 @@ searchInput.addEventListener('keyup', domUpdates.inputSearch);
 
 function onStartup() {
   fetchCurrentData()
-  console.log(cookbook, "on startup");
 }
 
 function fetchCurrentData() {
@@ -47,10 +45,8 @@ function fetchCurrentData() {
         pantry = new Pantry(newUser.pantry)
         cookbook = new Cookbook(allData.recipeData);
         ingredients = allData.ingredientsData
-        console.log(cookbook, "post fetch");
       }
       domUpdates.greetUser(user);
-      console.log(user, "post fetch user");
       domUpdates.populateCards(cookbook.recipes, user);
     })
 }
