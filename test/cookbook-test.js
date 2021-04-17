@@ -24,4 +24,10 @@ describe('User', () => {
       expect(cookbook.findRecipe('Sesame Cookies').length).to.equal(1);
     });
   });
+  describe('filterByTags', () => {
+    it.only('Should be able return recipes that include the given tags', () => {
+
+      expect(cookbook.filterByTags(['side dish', 'antipasti'])).to.equal("Baked Stuffed Artichokes");
+    });
+  });
 })
