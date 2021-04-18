@@ -10,17 +10,14 @@ class Pantry {
   // recipeObject.ingredients.forEach(ingredient => {
   //   let ingredientName = recipeObject.ingredientsData.find(item => (item.id === ingredient.id));
 
-  checkPantry(recipe) {
+  checkPantry(recipe, ingredients) {
     const missingIngredients = [];
     recipe.ingredients.forEach(recipeItem => {
       // let ingredientName = recipe.ingredients.find(item => item.id === this.contents.ingredient)
-
       let foundItemIndex = this.contents.findIndex(pantryItem => pantryItem.ingredient === recipeItem.id);
       if (foundItemIndex === -1 || recipeItem.quantity.amount > this.contents[foundItemIndex].amount) {
-        let ingredientName = recipe.ingredients.find(item => item.id === this.contents.ingredient)
-        console.log(recipe.ingredients)
-
-        missingIngredients.push(recipeItem.id);
+        let ingredientName = ingredients.find(item => item.id === recipeItem.id).name;
+        missingIngredients.push(ingredientName);
       }
     });
     if (!missingIngredients.length) {
@@ -33,8 +30,8 @@ class Pantry {
     }
   }
 
-  useIngredients(recipe) {
-    if (this.checkPantry(recipe) === `You have the ingredients!`) {
+  useIngredients(recipe, ingredients) {
+    if (this.checkPantry(recipe, ingredients) === `You have the ingredients!`) {
       recipe.ingredients.forEach(recipeItem => {
         let foundItemIndex = this.contents.findIndex(pantryItem => pantryItem.ingredient === recipeItem.id);
         this.contents[foundItemIndex].amount = this.contents[foundItemIndex].amount - recipeItem.quantity.amount;

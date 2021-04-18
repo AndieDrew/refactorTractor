@@ -97,7 +97,7 @@ const domUpdates = {
       domUpdates.populateCards(cookbook.recipes, user);
       document.querySelector('#search-input').value = '';
     } else if (event.target.classList.contains('add-button')) {
-      domUpdates.cookRecipe(event, user, cookbook);
+      domUpdates.cookRecipe(event, user, cookbook, ingredients);
     }
   },
 
@@ -172,7 +172,7 @@ const domUpdates = {
     this.getFavorites(user);
   },
 
-  cookRecipe(event, user, cookbook) {
+  cookRecipe(event, user, cookbook, ingredients) {
     let cardArea = document.querySelector('.all-cards');
     let addRecipeButton = document.querySelector('.add-button');
     let cookButton = document.querySelector('#view-recipes-to-cook-button');
@@ -182,7 +182,7 @@ const domUpdates = {
       }
     })
     console.log(user.pantry, "pre");
-    user.pantry.useIngredients(specificRecipe);
+    user.pantry.useIngredients(specificRecipe, ingredients);
     console.log(user.pantry, "post");
     if (!event.target.classList.contains('cook-active')) {
       event.target.classList.add('cook-active');

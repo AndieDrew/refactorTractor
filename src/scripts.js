@@ -39,7 +39,6 @@ function fetchCurrentData() {
         user = new User(allData.recipeData, userId, newUser.name, newUser.pantry)
         // pantry = new Pantry(newUser.pantry)
         cookbook = new Cookbook(allData.recipeData);
-        console.log(cookbook)
         ingredients = allData.ingredientsData
       }
       domUpdates.greetUser(user);
