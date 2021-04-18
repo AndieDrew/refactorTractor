@@ -7,17 +7,28 @@ class Pantry {
     return this.contents
   }
 
+  // recipeObject.ingredients.forEach(ingredient => {
+  //   let ingredientName = recipeObject.ingredientsData.find(item => (item.id === ingredient.id));
+
   checkPantry(recipe) {
     const missingIngredients = [];
     recipe.ingredients.forEach(recipeItem => {
+      // let ingredientName = recipe.ingredients.find(item => item.id === this.contents.ingredient)
+
       let foundItemIndex = this.contents.findIndex(pantryItem => pantryItem.ingredient === recipeItem.id);
       if (foundItemIndex === -1 || recipeItem.quantity.amount > this.contents[foundItemIndex].amount) {
-        missingIngredients.push(recipeItem.name);
+        let ingredientName = recipe.ingredients.find(item => item.id === this.contents.ingredient)
+        console.log(recipe.ingredients)
+
+        missingIngredients.push(recipeItem.id);
       }
     });
     if (!missingIngredients.length) {
+      console.log('You have the ingredients!');
       return `You have the ingredients!`
     } else {
+      console.log('missing ingredients', missingIngredients);
+
       return missingIngredients;
     }
   }
@@ -34,6 +45,7 @@ class Pantry {
       return this.contents;
     }
   }
+
 }
 
 export default Pantry;

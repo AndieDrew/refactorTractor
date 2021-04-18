@@ -123,9 +123,10 @@ const domUpdates = {
     let ingredientsSpan = document.querySelector('.ingredients');
     let instructionsSpan = document.querySelector('.instructions');
     recipeObject.ingredients.forEach(ingredient => {
+      let ingredientName = recipeObject.ingredientsData.find(item => (item.id === ingredient.id));
       ingredientsSpan.insertAdjacentHTML('afterbegin', `<ul><li>
       ${ingredient.quantity.amount.toFixed(2)} ${ingredient.quantity.unit}
-      ${ingredient.name}</li></ul>
+      ${ingredientName.name}</li></ul>
       `)
     })
     recipeObject.instructions.forEach(instruction => {
@@ -180,7 +181,9 @@ const domUpdates = {
         return recipe;
       }
     })
-    console.log('got it!')
+    console.log(user.pantry, "pre");
+    user.pantry.useIngredients(specificRecipe);
+    console.log(user.pantry, "post");
     if (!event.target.classList.contains('cook-active')) {
       event.target.classList.add('cook-active');
       cookButton.innerHTML = 'View Recipes To Cook';

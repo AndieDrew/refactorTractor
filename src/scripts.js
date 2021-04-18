@@ -2,7 +2,7 @@ import './css/base.scss';
 import './css/styles.scss';
 
 import domUpdates from './dom-update.js'
-import Pantry from './pantry';
+// import Pantry from './pantry';
 import Recipe from './recipe';
 import User from './user';
 import Cookbook from './cookbook';
@@ -37,7 +37,7 @@ function fetchCurrentData() {
       });
       if (!user) {
         user = new User(allData.recipeData, userId, newUser.name, newUser.pantry)
-        pantry = new Pantry(newUser.pantry)
+        // pantry = new Pantry(newUser.pantry)
         cookbook = new Cookbook(allData.recipeData);
         console.log(cookbook)
         ingredients = allData.ingredientsData
