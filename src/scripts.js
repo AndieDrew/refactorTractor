@@ -7,7 +7,7 @@ import Recipe from './recipe';
 import User from './user';
 import Cookbook from './cookbook';
 import {
-  fetchData
+  getData, postData
 } from './APICalls';
 
 let favButton = document.querySelector('.view-favorites');
@@ -29,7 +29,7 @@ function onStartup() {
 }
 
 function fetchCurrentData() {
-  fetchData()
+  getData()
     .then(allData => {
       let userId = (Math.floor(Math.random() * allData.userData.length) + 1)
       let newUser = allData.userData.find(user => {
@@ -44,4 +44,13 @@ function fetchCurrentData() {
       domUpdates.greetUser(user);
       domUpdates.populateCards(cookbook.recipes, user);
     })
+}
+
+function adjustPantry(ingredientID, ingredientMod) {
+  data = {
+    userID: user.id,
+    ingredientID: ingredientID,
+    ingredientModification: ingredientMod
+  }
+  postData(data)
 }
