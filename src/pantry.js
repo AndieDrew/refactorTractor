@@ -24,8 +24,7 @@ class Pantry {
       console.log('You have the ingredients!');
       return `You have the ingredients!`
     } else {
-      console.log('missing ingredients', missingIngredients);
-
+      // console.log('missing ingredients', missingIngredients);
       return missingIngredients;
     }
   }
@@ -39,8 +38,12 @@ class Pantry {
         //   this.contents.splice(foundItemIndex, 1)
         // }
       })
-      console.log("pantry", recipe.ingredients);
+      // console.log("pantry", recipe.ingredients);
       return recipe.ingredients;
+    }
+    else {
+      let data = this.checkPantry(recipe, ingredients)
+      return data
     }
   }
 
