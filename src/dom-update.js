@@ -1,11 +1,10 @@
 import Recipe from './recipe';
-import adjustPantry from './scripts'
+import {removePantry, returnPantry} from './scripts'
+// import returnPantry from './scripts'
+
 const domUpdates = {
 
   inputSearch(event, user, cookbook, cardArea, searchInput) {
-
-    // let cardArea = document.querySelector('.all-cards');
-    // let searchInput = document.querySelector('#search-input');
     cardArea.innerHTML = " ";
     cookbook.findRecipe(searchInput.value.toLowerCase()).forEach(recipe => {
       cardArea.insertAdjacentHTML('afterbegin', `<div id='${recipe.id}'
@@ -182,19 +181,22 @@ const domUpdates = {
       }
     })
     if (!event.target.classList.contains('cook-active') && user.pantry.checkPantry(specificRecipe, ingredients) === `You have the ingredients!`) {
-      console.log("I WORKED!")
       console.log(user.pantry, "pre");
       let data = user.pantry.useIngredients(specificRecipe, ingredients);
-      adjustPantry(data)
+      removePantry(data)
       console.log(user.pantry, "post");
       event.target.classList.add('cook-active');
       cookButton.innerHTML = 'View Recipes To Cook';
       user.addRecipeToCook(specificRecipe);
       console.log(specificRecipe);
     } else if (event.target.classList.contains('cook-active')) {
-      console.log("I DIDNT WORK!")
+      console.log("REMOVED")
       event.target.classList.remove('cook-active');
+      let data = user.pantry.returnIngredients(specificRecipe, ingredients);
+      returnPantry(data);
       user.removeFromRecipesToCook(specificRecipe);
+    } else {
+      console.log("I DIDNT WORK!")
     }
   },
 
@@ -217,7 +219,7 @@ const domUpdates = {
         class='card'>
         <header id='${recipe.id}' class='card-header'>
         <label for='add-button' class='hidden'>Click to add recipe</label>
-        <button id='${recipe.id}' aria-label='add-button' class='add-button card-button'>
+        <button id='${recipe.id}' aria-label='add-button' class='add-button cook-active card-button'>
         <img id='${recipe.id}' class='add'
         src='https://image.flaticon.com/icons/svg/32/32339.svg' alt='Add to
         recipes to cook'></button>

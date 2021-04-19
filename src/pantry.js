@@ -34,17 +34,21 @@ class Pantry {
       recipe.ingredients.forEach(recipeItem => {
         let foundItemIndex = this.contents.findIndex(pantryItem => pantryItem.ingredient === recipeItem.id);
         this.contents[foundItemIndex].amount = this.contents[foundItemIndex].amount - recipeItem.quantity.amount;
-        // if (!this.contents[foundItemIndex].amount) {
-        //   this.contents.splice(foundItemIndex, 1)
-        // }
       })
-      // console.log("pantry", recipe.ingredients);
       return recipe.ingredients;
     }
     else {
       let data = this.checkPantry(recipe, ingredients)
       return data
     }
+  }
+
+  returnIngredients(recipe, ingredients) {
+    recipe.ingredients.forEach(recipeItem => {
+      let foundItemIndex = this.contents.findIndex(pantryItem => pantryItem.ingredient === recipeItem.id);
+      this.contents[foundItemIndex].amount = this.contents[foundItemIndex].amount + recipeItem.quantity.amount;
+    })
+    return recipe.ingredients;
   }
 
 }

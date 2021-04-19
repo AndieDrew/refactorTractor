@@ -30,7 +30,7 @@ export const getData = () => {
     })
 }
 
-export const postData = (data) => {
+  export const postData = (data) => {
   fetch("http://localhost:3001/api/v1/users", {
   method: 'POST',
   body: JSON.stringify(data),

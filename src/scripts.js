@@ -46,7 +46,7 @@ function fetchCurrentData() {
     })
 }
 
-function adjustPantry(arr) {
+export function removePantry(arr) {
   if (typeof(arr[0]) === "string") {
     return
   }
@@ -60,4 +60,14 @@ function adjustPantry(arr) {
   })
 }
 
-export default adjustPantry;
+export function returnPantry(arr) {
+  console.log(arr, '<<array')
+  arr.forEach(ingredient => {
+    let data = {
+      "userID": user.id,
+      "ingredientID": ingredient.id,
+      "ingredientModification": Number(`+${ingredient.quantity.amount}`)
+    };
+    postData(data)
+  })
+}
