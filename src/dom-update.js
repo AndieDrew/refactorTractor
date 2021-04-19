@@ -181,16 +181,18 @@ const domUpdates = {
         return recipe;
       }
     })
-    console.log(user.pantry, "pre");
-    let data = user.pantry.useIngredients(specificRecipe, ingredients);
-    adjustPantry(data)
-    console.log(user.pantry, "post");
-    if (!event.target.classList.contains('cook-active')) {
+    if (!event.target.classList.contains('cook-active') && user.pantry.checkPantry(specificRecipe, ingredients) === `You have the ingredients!`) {
+      console.log("I WORKED!")
+      console.log(user.pantry, "pre");
+      let data = user.pantry.useIngredients(specificRecipe, ingredients);
+      adjustPantry(data)
+      console.log(user.pantry, "post");
       event.target.classList.add('cook-active');
       cookButton.innerHTML = 'View Recipes To Cook';
       user.addRecipeToCook(specificRecipe);
       console.log(specificRecipe);
     } else if (event.target.classList.contains('cook-active')) {
+      console.log("I DIDNT WORK!")
       event.target.classList.remove('cook-active');
       user.removeFromRecipesToCook(specificRecipe);
     }
