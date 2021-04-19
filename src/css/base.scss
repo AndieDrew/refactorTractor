@@ -1,6 +1,7 @@
-/* This is an example of using Sass, otherwise plain CSS works too*/
-$primary-background: pink;
-
-body {
-  background-color: $primary-background;
-}
+//Refactor imports to new best practice: @use
+// @import '_containers';
+// @import '_heading';
+// @import '_variables';
+// @import '_cards';
+// @import '_recipe';
+// @import '_interaction';
