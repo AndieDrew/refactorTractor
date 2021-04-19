@@ -6,13 +6,18 @@
 * __Tyson McNutt__ (GitHub: [tysnj](https://github.com/tysnj))
 
 ## Abstract
-This is a recipe tracking / meal planning. Users can explore a whole host of recipe options. In this application they can favorite recipes or add them to a to-do list. Opening the recipe card, the user can see exactly what ingredients they own and what they are missing from their pantry. Recipe card also display the cost of recipe ingredients, and instructions.
+The application is designed for meal planning, where users are presented with a host of recipe options. Users have the capability to favorite recipes and/or add them to a to-do list. Users can only add a recipe to their to-do list if they have the required ingredients, and the ingredients' amounts are subtracted from their pantry when doing so; removing a recipe from this list replaces the ingredient amounts in the user's pantry.
 
-A user can search for a recipe by genre type, or search by ingredient name. While viewing their pantry, the user can add or subtract items based on if they've just cooked a recipe or went shopping.
+When opening the recipe card, a user sees what ingredients are needed for the recipe, the total cost of the recipe ingredients, and instructions to make the recipe.
 
- Working off the codebase of a previously completed project, the goal for this project was to refactor the existing code to be more efficient. Many users stories were incomplete or had broken functionality. After building out the missing functionality, we were tasked with replacing local datasets to endpoints linked to an API. Additionally, we added in SASS to our stylesheets, used spy testing in our chai to make sure DOM updates were called, and added in accessibility qualities to our application.
+A user can search for a recipes with words either found in the recipe name or within the recipe ingredients list.
 
 ## Learning Goals
+Working off the codebase of an incomplete project, our primary goal was to refactor the existing code while working toward our learning goals.
+
+Many users stories from the original spec sheet were incomplete or had broken functionality.
+
+We were tasked with replacing local datasets to endpoints linked to an API. Additionally, we added in SASS to our stylesheets, used spy testing in our chai to make sure DOM updates were called, and added in accessibility qualities to our application.
 * Build on top of pre-existing code that you did not write and navigate someone else’s codebase
 * Develop processes for working remotely and submitting pull requests to perform effective code reviews that help ensure the code is accurate and that everyone understands it
 * Make network requests to API endpoints to retrieve and manipulate data
