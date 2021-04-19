@@ -1,5 +1,5 @@
 import Recipe from './recipe';
-
+import adjustPantry from './scripts'
 const domUpdates = {
 
   inputSearch(event, user, cookbook, cardArea, searchInput) {
@@ -182,7 +182,8 @@ const domUpdates = {
       }
     })
     console.log(user.pantry, "pre");
-    user.pantry.useIngredients(specificRecipe, ingredients);
+    let data = user.pantry.useIngredients(specificRecipe, ingredients);
+    adjustPantry(data)
     console.log(user.pantry, "post");
     if (!event.target.classList.contains('cook-active')) {
       event.target.classList.add('cook-active');

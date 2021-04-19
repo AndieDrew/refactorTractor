@@ -31,7 +31,7 @@ function onStartup() {
 function fetchCurrentData() {
   getData()
     .then(allData => {
-      let userId = (Math.floor(Math.random() * allData.userData.length) + 1)
+      let userId = 10 // (Math.floor(Math.random() * allData.userData.length) + 1)
       let newUser = allData.userData.find(user => {
         return user.id === Number(userId);
       });
@@ -46,11 +46,15 @@ function fetchCurrentData() {
     })
 }
 
-function adjustPantry(ingredientID, ingredientMod) {
-  data = {
-    userID: user.id,
-    ingredientID: ingredientID,
-    ingredientModification: ingredientMod
-  }
-  postData(data)
+function adjustPantry(arr) {
+  arr.forEach(ingredient => {
+    let data = {
+      userID: user.id,
+      ingredientID: ingredient.id,
+      ingredientModification: Number(`-${ingredient.quantity.amount}`)
+    };
+    postData(data)
+  })
 }
+
+export default adjustPantry;

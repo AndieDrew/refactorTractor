@@ -34,9 +34,12 @@ export const postData = (data) => {
   fetch("http://localhost:3001/api/v1/users", {
   method: 'POST',
   body: JSON.stringify(data),
+  headers: {
   	'Content-Type': 'application/json'
-  })
+    }
+  }
+)
   .then(response => response.json())
   .then(json => console.log(json))
-  .catch(err => console.log(err));
+  .catch(err => console.log("you fucked up", err));
 }
