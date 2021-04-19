@@ -1,0 +1,62 @@
+.card {
+  background-color: #D7F2FE;
+  border: $large-border;
+  width: $full-width;
+  //*********** START OF HEADER***************
+  .card-header {
+    background-color: $secondary-background;
+    border-bottom: $small-border;
+    display: flex;
+    justify-content: space-between;
+
+    .card-button {
+      border: $small-border;
+      height: 27px;
+      margin: 3px;
+    }
+
+    .add-button {
+      background-color: $secondary-background;
+      display: flex;
+      width: 12%;
+
+      .add {
+        width: $full-width;
+      }
+    }
+
+    .favorite {
+      background-color: $secondary-background;
+      background-image: url("https://image.flaticon.com/icons/svg/149/149222.svg");
+      background-repeat: no-repeat;
+      background-position: center;
+      width: 13%;
+    }
+
+    .favorite-active {
+      background-image: url("https://image.flaticon.com/icons/svg/148/148841.svg");
+      background-repeat: no-repeat;
+    }
+  }
+  //*********** END OF HEADER ***************
+  .recipe-name {
+    display: block;
+    font-size: 150%;
+    text-align: center;
+  }
+
+  .card-picture {
+    border: $medium-border;
+    height: 200px;
+    margin: 10px 3% 8px 2.6%;
+    width: 80%;
+  }
+
+  .card-picture:hover {
+    opacity: 0.7;
+  }
+
+  .card-picture:active {
+    border: $medium-border;
+  }
+}
