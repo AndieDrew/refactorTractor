@@ -10,7 +10,6 @@ body {
   margin: auto;
 }
 
-
 .main-header {
   background-color: #EBF5EE;
   border: 2px solid #000;
@@ -67,7 +66,6 @@ h1 {
   background-color: #cff2da;
 }
 
-
 .search-image:active,
 .card-button:active,
 .navButton:active,
@@ -84,14 +82,11 @@ h1 {
   width: 90%;
 }
 
-
 .card-button {
   border: 1px solid #000;
   height: 27px;
   margin: 3px;
 }
-
-
 
 .add-button {
   background-color: #EBF5EE;
@@ -106,7 +101,6 @@ h1 {
 .hidden {
   display: none;
 }
-
 
 .favorite {
   background-color: #EBF5EE;
@@ -134,7 +128,6 @@ img {
   width: 100%;
 }
 
-
 .card-header {
   background-color: #EBF5EE;
   border-bottom: 1px solid #000;
@@ -160,7 +153,6 @@ h3 {
 }
 
 .recipe-name {
-
   display: block;
   font-size: 150%;
   text-align: center;

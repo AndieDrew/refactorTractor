@@ -2,12 +2,12 @@ import './css/base.scss';
 import './css/styles.scss';
 
 import domUpdates from './dom-update.js'
-// import Pantry from './pantry';
-import Recipe from './recipe';
+
 import User from './user';
 import Cookbook from './cookbook';
 import {
-  getData, postData
+  getData,
+  postData
 } from './APICalls';
 
 let favButton = document.querySelector('.view-favorites');
@@ -15,15 +15,16 @@ let homeButton = document.querySelector('.home')
 let cardArea = document.querySelector('.all-cards');
 let searchInput = document.querySelector('#search-input');
 let cookButton = document.querySelector('#view-recipes-to-cook-button');
-let user, pantry, cookbook, ingredients;
+let user, cookbook, ingredients;
 
 window.onload = onStartup();
 
 homeButton.addEventListener('click', () => domUpdates.cardButtonConditionals(event, user, cookbook));
-favButton.addEventListener('click', () =>  domUpdates.viewFavorites(event, user, cookbook));
+favButton.addEventListener('click', () => domUpdates.viewFavorites(event, user, cookbook));
 cardArea.addEventListener('click', () => domUpdates.cardButtonConditionals(event, user, cookbook, ingredients));
 searchInput.addEventListener('keyup', () => domUpdates.inputSearch(event, user, cookbook, cardArea, searchInput));
 cookButton.addEventListener('click', () => domUpdates.viewRecipesToCook(event, user, cookbook));
+
 function onStartup() {
   fetchCurrentData()
 }
