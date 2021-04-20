@@ -37,7 +37,7 @@ class Pantry {
     }
   }
 
-  returnIngredients(recipe, ingredients) {
+  returnIngredients(recipe) {
     recipe.ingredients.forEach(recipeItem => {
       let foundItemIndex = this.contents.findIndex(pantryItem => pantryItem.ingredient === recipeItem.id);
       this.contents[foundItemIndex].amount = this.contents[foundItemIndex].amount + recipeItem.quantity.amount;

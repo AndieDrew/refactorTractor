@@ -2,8 +2,7 @@ import './css/base.scss';
 import './css/styles.scss';
 
 import domUpdates from './dom-update.js'
-// import Pantry from './pantry';
-import Recipe from './recipe';
+
 import User from './user';
 import Cookbook from './cookbook';
 import {
@@ -16,7 +15,7 @@ let homeButton = document.querySelector('.home')
 let cardArea = document.querySelector('.all-cards');
 let searchInput = document.querySelector('#search-input');
 let cookButton = document.querySelector('#view-recipes-to-cook-button');
-let user, pantry, cookbook, ingredients;
+let user, cookbook, ingredients;
 
 window.onload = onStartup();
 
