@@ -68,6 +68,7 @@ const domUpdates = {
   },
 
   favoriteCard(event, user, cookbook) {
+    let cookButton = document.querySelector('#view-recipes-to-cook-button');
     let favButton = document.querySelector('.view-favorites');
     let specificRecipe = cookbook.recipes.find(recipe => {
       if (recipe.id === Number(event.target.id)) {
@@ -77,6 +78,7 @@ const domUpdates = {
     if (!event.target.classList.contains('favorite-active')) {
       event.target.classList.add('favorite-active');
       favButton.innerHTML = 'View Favorites';
+      cookButton.innerHTML = 'View Recipes To Cook'
       user.addToFavorites(specificRecipe);
     } else if (event.target.classList.contains('favorite-active')) {
       event.target.classList.remove('favorite-active');
@@ -85,14 +87,17 @@ const domUpdates = {
   },
 
   cardButtonConditionals(event, user, cookbook, ingredients) {
+    let cookButton = document.querySelector('#view-recipes-to-cook-button');
     let favButton = document.querySelector('.view-favorites');
     let addRecipeButton = document.querySelector('.add');
     if (event.target.classList.contains('favorite')) {
       domUpdates.favoriteCard(event, user, cookbook);
+      cookButton.innerHTML = 'View Recipes To Cook'
     } else if (event.target.classList.contains('card-picture')) {
       domUpdates.displayDirections(event, cookbook, ingredients);
     } else if (event.target.classList.contains('home')) {
       favButton.innerHTML = 'View Favorites';
+      cookButton.innerHTML = 'View Recipes To Cook'
       domUpdates.populateCards(cookbook.recipes, user);
       document.querySelector('#search-input').value = '';
     } else if (event.target.classList.contains('add-button')) {
@@ -196,7 +201,7 @@ const domUpdates = {
       returnPantry(data);
       user.removeFromRecipesToCook(specificRecipe);
     } else {
-      console.log("I DIDNT WORK!")
+      cookButton.innerText = "Ingredients Needed!"
     }
   },
 
