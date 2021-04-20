@@ -242,10 +242,10 @@ const domUpdates = {
   },
 
   displayErr(err) {
-    // const errField = document.querySelector(".js-err");
+    let cardArea = document.querySelector('.all-cards');
     const message = err.message === 'Failed to fetch' ?
       'Something went wrong. please check your internet connection' : err.message;
-    window.alert(message);
+    cardArea.innerHTML = message;
   }
 
 }
