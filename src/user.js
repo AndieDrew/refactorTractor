@@ -1,11 +1,12 @@
 import Cookbook from './cookbook';
+import Pantry from './pantry';
 
 class User extends Cookbook {
   constructor(recipes, id, name, pantry) {
     super(recipes);
     this.id = id;
     this.name = name;
-    this.pantry = pantry;
+    this.pantry = new Pantry(pantry);
     this.favoriteRecipes = [];
     this.recipesToCook = [];
   }

@@ -1,4 +1,4 @@
-export const fetchData = () => {
+export const getData = () => {
   let userData = fetch("http://localhost:3001/api/v1/users")
     .then(response => response.json())
     .then(userData => {
@@ -28,4 +28,18 @@ export const fetchData = () => {
       allData.recipeData = data[2];
       return allData;
     })
+}
+
+  export const postData = (data) => {
+  fetch("http://localhost:3001/api/v1/users", {
+  method: 'POST',
+  body: JSON.stringify(data),
+  headers: {
+  	'Content-Type': 'application/json'
+    }
+  }
+)
+  .then(response => response.json())
+  .then(json => console.log(json))
+  .catch(err => console.log("you fucked up", err));
 }
