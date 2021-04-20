@@ -2,12 +2,12 @@ import './css/base.scss';
 import './css/styles.scss';
 
 import domUpdates from './dom-update.js'
-import Pantry from './pantry';
+// import Pantry from './pantry';
 import Recipe from './recipe';
 import User from './user';
 import Cookbook from './cookbook';
 import {
-  fetchData
+  getData, postData
 } from './APICalls';
 
 let favButton = document.querySelector('.view-favorites');
@@ -29,21 +29,45 @@ function onStartup() {
 }
 
 function fetchCurrentData() {
-  fetchData()
+  getData()
     .then(allData => {
-      let userId = (Math.floor(Math.random() * allData.userData.length) + 1)
+      let userId = 10 // (Math.floor(Math.random() * allData.userData.length) + 1)
       let newUser = allData.userData.find(user => {
         return user.id === Number(userId);
       });
       if (!user) {
         user = new User(allData.recipeData, userId, newUser.name, newUser.pantry)
         pantry = new Pantry(newUser.pantry)
-          ingredients = allData.ingredientsData
+        ingredients = allData.ingredientsData
         cookbook = new Cookbook(allData.recipeData, ingredients);
-        console.log(cookbook)
-
       }
       domUpdates.greetUser(user);
       domUpdates.populateCards(cookbook.recipes, user);
     })
+}
+
+export function removePantry(arr) {
+  if (typeof(arr[0]) === "string") {
+    return
+  }
+  arr.forEach(ingredient => {
+    let data = {
+      "userID": user.id,
+      "ingredientID": ingredient.id,
+      "ingredientModification": Number(`-${ingredient.quantity.amount}`)
+    };
+    postData(data)
+  })
+}
+
+export function returnPantry(arr) {
+  console.log(arr, '<<array')
+  arr.forEach(ingredient => {
+    let data = {
+      "userID": user.id,
+      "ingredientID": ingredient.id,
+      "ingredientModification": Number(`+${ingredient.quantity.amount}`)
+    };
+    postData(data)
+  })
 }

@@ -1,0 +1,28 @@
+.card-button:hover,
+.navButton:hover,
+.search-button:hover,
+.search-image:hover {
+  background-color: #cff2da;
+}
+
+.card-button:active,
+.navButton:active,
+.search-button:active,
+.search-image:active {
+  background-color: #C3C2C6;
+}
+
+.hidden {
+  display: none;
+}
+
+img {
+  cursor: pointer;
+}
+
+//classlist that's added and removed from cards.
+//not sure if this should go here or in cards file
+.all {
+  grid-gap: 0;
+  grid-template-columns: repeat(1, 1fr);
+}
