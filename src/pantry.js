@@ -17,7 +17,6 @@ class Pantry {
       }
     });
     if (!missingIngredients.length) {
-      console.log('You have the ingredients!');
       return `You have the ingredients!`
     } else {
       return missingIngredients;

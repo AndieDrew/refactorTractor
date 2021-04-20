@@ -7,14 +7,13 @@ class Cookbook {
   findRecipe(searchText) {
     return this.recipes.filter(recipe => {
       return recipe.ingredients.find(recIngredient => {
-        console.log(this.ingredients)
         this.ingredients.forEach(ingredient => {
           if (recIngredient.id === ingredient.id) {
             recIngredient.name = ingredient.name;
           }
         })
-        return (recipe.name.toLowerCase().includes(searchText)) ||
-          (recIngredient.name.toLowerCase().includes(searchText))
+        return (recipe.name.toLowerCase().includes(searchText.toLowerCase())) ||
+          (recIngredient.name.toLowerCase().includes(searchText.toLowerCase()))
       });
     })
   }
