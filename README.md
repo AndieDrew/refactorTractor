@@ -10,7 +10,7 @@ This meal planning application presents users with a host of recipe options that
 
 When opening a recipe card, a user sees what ingredients are needed for the recipe, including instructions to make the recipe with the total cost of the recipe's ingredients.
 
-A user can search across recipe's names, ingredients, and tags.
+A user can search across recipe's names and ingredients.
 
 ## Learning Goals
 Working from an existing codebase, our objective was to refactor code while working toward our learning goals. They were:
@@ -43,9 +43,9 @@ run `npm start`
 
 
 ## In Action
-![Main Page](https://)
-![Favorites Page](https://)
-![Recipes to Cook Page](https://)
+In this example, Retta (our user) has the ingredients for the Pastry Cream, but they do not have ingredients for Vegan Lentil Loaf.
+![Adding to Favorites or To-Do List](docs/fav_todo.gif)
+![Searching Recipe Names/Ingredients](docs/search_name_ing.gif)
 
 ## Wins
 - Consistently maintaining a project board and staying on task with our sprint planning to meet learning goals by due date
