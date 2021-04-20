@@ -38,9 +38,10 @@ function fetchCurrentData() {
       if (!user) {
         user = new User(allData.recipeData, userId, newUser.name, newUser.pantry)
         pantry = new Pantry(newUser.pantry)
-        cookbook = new Cookbook(allData.recipeData);
+          ingredients = allData.ingredientsData
+        cookbook = new Cookbook(allData.recipeData, ingredients);
         console.log(cookbook)
-        ingredients = allData.ingredientsData
+
       }
       domUpdates.greetUser(user);
       domUpdates.populateCards(cookbook.recipes, user);
