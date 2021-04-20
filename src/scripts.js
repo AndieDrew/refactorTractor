@@ -37,9 +37,9 @@ function fetchCurrentData() {
       });
       if (!user) {
         user = new User(allData.recipeData, userId, newUser.name, newUser.pantry)
-        // pantry = new Pantry(newUser.pantry)
-        cookbook = new Cookbook(allData.recipeData);
+        pantry = new Pantry(newUser.pantry)
         ingredients = allData.ingredientsData
+        cookbook = new Cookbook(allData.recipeData, ingredients);
       }
       domUpdates.greetUser(user);
       domUpdates.populateCards(cookbook.recipes, user);
