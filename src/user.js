@@ -30,10 +30,10 @@ class User extends Cookbook {
 
   findFavorites(strgToSrch) {
     return this.favoriteRecipes.filter(recipe => {
-      return recipe.name.includes(strgToSrch)
-      || recipe.ingredients.find(ingredient => {
-        return ingredient.name.includes(strgToSrch)
-      });
+      return recipe.name.includes(strgToSrch) ||
+        recipe.ingredients.find(ingredient => {
+          return ingredient.name.includes(strgToSrch)
+        });
     });
   }
 
