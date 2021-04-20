@@ -239,6 +239,13 @@ const domUpdates = {
         </div>`)
       })
     }
+  },
+
+  displayErr(err) {
+    // const errField = document.querySelector(".js-err");
+    const message = err.message === 'Failed to fetch' ?
+      'Something went wrong. please check your internet connection' : err.message;
+    window.alert(message);
   }
 
 }
