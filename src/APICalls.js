@@ -13,14 +13,14 @@ export const getData = () => {
     })
     .catch(err => console.log("error received"));
 
-    let recipeData = fetch("http://localhost:3001/api/v1/recipes")
-      .then(response => response.json())
-      .then(recipeData => {
-        return recipeData;
-      })
-      .catch(err => console.log("recipeData error received"));
+  let recipeData = fetch("http://localhost:3001/api/v1/recipes")
+    .then(response => response.json())
+    .then(recipeData => {
+      return recipeData;
+    })
+    .catch(err => console.log("recipeData error received"));
 
-    return Promise.all([userData, ingredientsData, recipeData])
+  return Promise.all([userData, ingredientsData, recipeData])
     .then(data => {
       let allData = {};
       allData.userData = data[0];
@@ -30,16 +30,15 @@ export const getData = () => {
     })
 }
 
-  export const postData = (data) => {
+export const postData = (data) => {
   fetch("http://localhost:3001/api/v1/users", {
-  method: 'POST',
-  body: JSON.stringify(data),
-  headers: {
-  	'Content-Type': 'application/json'
-    }
-  }
-)
-  .then(response => response.json())
-  .then(json => console.log(json))
-  .catch(err => console.log("you fucked up", err));
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(response => response.json())
+    .then(json => console.log(json))
+    .catch(err => console.log("post error", err));
 }
