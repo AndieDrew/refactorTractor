@@ -4,6 +4,16 @@ class Cookbook {
     this.ingredients = ingredients;
   }
 
+  filterByTags(tags) {
+    let matches = []
+    this.recipes.forEach(recipe => {
+      if (tags.every(tag => recipe.tags.includes(tag))) {
+        matches.push(recipe)
+      }
+    })
+    return matches.map(match => match.name);
+  }
+
   findRecipe(searchText) {
     return this.recipes.filter(recipe => {
       return recipe.ingredients.find(recIngredient => {
