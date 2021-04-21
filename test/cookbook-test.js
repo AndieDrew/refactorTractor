@@ -25,7 +25,7 @@ describe('Cookbook', () => {
     expect(cookbook.findRecipe('Rolo Cookie Bars').length).to.equal(1);
   });
 
-  it.only('Should be able to filter by multiple tags', () => {
+  it('Should be able to filter by multiple tags', () => {
     expect(cookbook.filterByTags(['side dish', 'antipasti'])).to.deep.equal(['Baked Stuffed Artichokes'])
     expect(cookbook.filterByTags(['morning meal', 'brunch', 'breakfast'])).to.deep.equal(['Pumpkin Cheesecake Breakfast Smoothie'])
     expect(cookbook.filterByTags(['lunch', 'main course', 'main dish', 'dinner']).length).to.deep.equal(12)
