@@ -44,6 +44,7 @@ run `npm start`
 
 ## In Action
 In this example, Retta (our user) has the ingredients for the Pastry Cream, but they do not have ingredients for Vegan Lentil Loaf.
+
 ![Adding to Favorites or To-Do List](docs/fav_todo.gif)
 
 ![Searching Recipe Names/Ingredients](docs/search_name_ing.gif)
